@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProcedualGalaxyGame
+using ProcedualGalaxyGame.Systems;
+using ProcedualGalaxyGame.Core;
+
+namespace ProcedualGalaxyGame.Systems
 {
-    class Program
+    class SystemGenerator
     {
-        static void Main(string[] args)
-        {
-        }
+
     }
 }
