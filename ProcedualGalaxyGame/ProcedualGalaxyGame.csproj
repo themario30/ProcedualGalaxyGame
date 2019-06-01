@@ -49,10 +49,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Planet.cs" />
     <Compile Include="Core\Star.cs" />
     <Compile Include="Interface\IBody.cs" />
     <Compile Include="Interface\ISystem.cs" />
-    <Compile Include="Core\System.cs" />
+    <Compile Include="Core\SpaceSystem.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Systems\SystemGenerator.cs" />

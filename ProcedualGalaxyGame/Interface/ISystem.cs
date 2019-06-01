@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ProcedualGalaxyGame.Interface
 
 {
-    interface ISystem
+    public interface ISystem
     {
         string Name { get; set; }
         float Speed { get; set; }

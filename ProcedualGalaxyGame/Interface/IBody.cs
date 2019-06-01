@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace ProcedualGalaxyGame.Interface
 {
-    interface IBody
+    public interface IBody
     {
         string Name { get; set; }
         string Type { get; set; }
+
+        RLNET.RLColor Color { get; }
     }
 }
