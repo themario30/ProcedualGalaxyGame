@@ -9,6 +9,8 @@ using RLNET;
 using ProcedualGalaxyGame.Systems;
 using ProcedualGalaxyGame.Systems.Generators;
 using ProcedualGalaxyGame.Core;
+using ProcedualGalaxyGame.Core.Lore;
+using ProcedualGalaxyGame.Systems.View;
 
 namespace ProcedualGalaxyGame
 {
@@ -33,9 +35,15 @@ namespace ProcedualGalaxyGame
         private static readonly int _logConsoleHeight = 10;
         private static RLConsole _logConsole;
 
+        private static readonly int _loreLogConsoleWidth = 50;
+        private static readonly int _loreLogConsoleHeight = 50;
+        private static RLConsole _loreLogConsole; //Console for reading the lore
+
         public static CurrentView currentWindowView;
 
         public static bool isRenderRequired;
+
+        private static LoreBox loreBox;
 
         //viewing maps
         public static Galaxy Galaxy;
@@ -48,10 +56,13 @@ namespace ProcedualGalaxyGame
             _starMapConsole = new RLConsole(_starMapConsoleWidth, _starMapConsoleHeight);
             _logConsole = new RLConsole(_logConsoleWidth, _logConsoleHeight);
             _galaxyMapConsole = new RLConsole(_galaxyMapConsoleWidth, _galaxyMapConsoleHeight);
+            _loreLogConsole = new RLConsole(_loreLogConsoleWidth, _loreLogConsoleHeight);
+
+            loreBox = new LoreBox(null, 40, 30, "Genesis");
 
             Galaxy = GalaxyGenerator.Generate();
             currentSystem = 0;
-            currentWindowView = CurrentView.StarMap;
+            currentWindowView = CurrentView.Log;
 
             _rootConsole.Update += RootConsoleUpdate;
             _rootConsole.Render += RootConsoleRender;
@@ -83,6 +94,9 @@ namespace ProcedualGalaxyGame
                         break;
                     case CurrentView.Planet:
                         break;
+                    case CurrentView.Log:
+                        DisplayLog();
+                        break;
                 }
 
                 //DisplayMap();
@@ -101,6 +115,20 @@ namespace ProcedualGalaxyGame
 
             if(keyPress != null)
             {
+                if(keyPress.Key == RLKey.KeypadPlus)
+                {
+                    if (loreBox != null)
+                        loreBox.ScrollUp();
+                    isRenderRequired = true;
+                }
+
+                if (keyPress.Key == RLKey.KeypadMinus)
+                {
+                    if (loreBox != null)
+                        loreBox.ScrollDown();
+                    isRenderRequired = true;
+                }
+
                 if(keyPress.Key == RLKey.R)
                 {
                     isRenderRequired = true;
@@ -191,15 +219,8 @@ namespace ProcedualGalaxyGame
 
         private static void DisplayLog()
         {
-            StringBuilder sb = new StringBuilder();
-            StreamReader sr = new StreamReader(new FileStream("Genesis.txt", FileMode.Open, FileAccess.Read));
 
-            while(!sr.EndOfStream)
-            {
-                sb.AppendLine(sr.ReadLine());
-            }
-
-            Console.Write(sb);
+            RLRootConsole.Blit(loreBox.Draw(), 0, 0, loreBox.width, loreBox.height, _rootConsole, 5, 10);
         }
 
         //Displays a map with a message log below

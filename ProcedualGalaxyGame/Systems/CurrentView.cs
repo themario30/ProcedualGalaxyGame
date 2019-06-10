@@ -13,6 +13,7 @@ namespace ProcedualGalaxyGame.Systems
         GalaxyMap,
         Ship,
         Weapons,
-        Planet
+        Planet,
+        Log
     }
 }

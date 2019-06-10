@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Core\Body.cs" />
     <Compile Include="Core\Galaxy.cs" />
+    <Compile Include="Core\Lore\LoreColors.cs" />
     <Compile Include="Core\Planet.cs" />
     <Compile Include="Core\Star.cs" />
     <Compile Include="Interface\IBody.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="Systems\PlanetType.cs" />
     <Compile Include="Systems\RandomNumberGenerator.cs" />
     <Compile Include="Systems\Generators\SystemGenerator.cs" />
+    <Compile Include="Systems\View\LoreBox.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -78,8 +80,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Core\Lore\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
